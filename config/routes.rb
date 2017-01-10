@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :user_accounts
+  # Routes for the User_account resource:
+  # READ
+  get "/user_accounts", :controller => "user_accounts", :action => "index"
+  get "/user_accounts/:id", :controller => "user_accounts", :action => "show"
+
+
   # Routes for the Cuisine resource:
   # CREATE
   get "/cuisines/new", :controller => "cuisines", :action => "new"
