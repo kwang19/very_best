@@ -7,6 +7,10 @@ class UserAccount < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :venues,
+             :through => :bookmarks,
+             :source => :bookmark
+
   # Validations
 
   # Include default devise modules. Others available are:

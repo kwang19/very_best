@@ -1,7 +1,7 @@
 class VenuesController < ApplicationController
   def index
     @q = Venue.ransack(params[:q])
-    @venues = @q.result(:distinct => true).includes(:dishes, :bookmarks).page(params[:page]).per(10)
+    @venues = @q.result(:distinct => true).includes(:dishes, :bookmarks, :users).page(params[:page]).per(10)
 
     render("venues/index.html.erb")
   end
@@ -23,9 +23,9 @@ class VenuesController < ApplicationController
   def create
     @venue = Venue.new
 
+    @venue.name = params[:name]
     @venue.address = params[:address]
     @venue.neighborhood = params[:neighborhood]
-    @venue.name = params[:name]
 
     save_status = @venue.save
 
@@ -52,9 +52,9 @@ class VenuesController < ApplicationController
   def update
     @venue = Venue.find(params[:id])
 
+    @venue.name = params[:name]
     @venue.address = params[:address]
     @venue.neighborhood = params[:neighborhood]
-    @venue.name = params[:name]
 
     save_status = @venue.save
 

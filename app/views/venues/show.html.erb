@@ -5,14 +5,14 @@
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
+      <dt>Name</dt>
+      <dd><%= @venue.name %></dd>
+
       <dt>Address</dt>
       <dd><%= @venue.address %></dd>
 
       <dt>Neighborhood</dt>
       <dd><%= @venue.neighborhood %></dd>
-
-      <dt>Name</dt>
-      <dd><%= @venue.name %></dd>
 
     </dl>
 
@@ -146,6 +146,37 @@
       </button>
     </form>
       </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Venue has many users -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Users
+      </li>
+
+      <% @venue.users.each do |user_account| %>
+        <li class="list-group-item">
+          <a href="/user_accounts/<%= user_account.id %>">
+            <%= user_account.created_at %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/user_accounts/<%= user_account.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/user_accounts/<%= user_account.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_user_account/<%= user_account.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>
