@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => "dishes#index"
   devise_for :user_accounts
   # Routes for the User_account resource:
   # READ
